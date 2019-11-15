@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import SearchForm from "./SearchForm";
 
 const CharStyles = styled.section`
   background: aqua;
   text-align: center;
-  padding: 30px;
+  padding: 40px;
   border-radius: 20px;
 `;
 const NameStyles = styled.h3`
@@ -17,8 +18,9 @@ const DataStyles = styled.h4`
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
     const [charData, setCharData] = useState([]);
+    const [searchName, setSearchName]= useState([]);
     const [query] = useState('');
-
+  
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
@@ -34,12 +36,29 @@ export default function CharacterList() {
       });
   }, [query]);
 
+// const handleChange = (event) => {
+//   console.log(event)
+// }
+
+  useEffect(() => {
+    console.log(query)
+    setSearchName(
+      charData.filter(res => {
+        res.name.toLowerCase().includes(query.toLowerCase())
+      })
+    )
+  }, [query]);
+
+
 
   return (
+   
     <CharStyles>
       <section className="character-list">
         {charData.map(data => {
           return (
+   
+
             <div className="char-data" key={data.id}>
               <NameStyles>Name: {data.name}</NameStyles>
                 <DataStyles>
@@ -47,9 +66,10 @@ export default function CharacterList() {
                 <p>Status: {data.status}</p>
                 </DataStyles>
               </div>
-        )
-      })}
-    </section>
+          )
+        })}
+         <SearchForm></SearchForm>
+      </section>
     </CharStyles>
   );
 }
