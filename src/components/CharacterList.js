@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
+const CharStyles = styled.section`
+  background: aqua;
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+`;
+const NameStyles = styled.h3`
+  font-size: 1.4rem;
+`;
+const DataStyles = styled.h4`
+  font-size: 1rem;
+`;
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
     const [charData, setCharData] = useState([]);
-    const [query, setQuery] = useState('');
+    const [query] = useState('');
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
@@ -21,22 +34,22 @@ export default function CharacterList() {
       });
   }, [query]);
 
-  const handleInputChange = e => {
-    setQuery(e.target.value);
-  };
 
   return (
-    <section className="character-list">
-      
-      {charData.map(data => {
-        return (
-          <div className="char-data" key={data.id}>
-            <h3>Name: {data.name}</h3>
-              <p>Species: {data.species}</p>
-              <p>Status: {data.status}</p>
-            </div>
+    <CharStyles>
+      <section className="character-list">
+        {charData.map(data => {
+          return (
+            <div className="char-data" key={data.id}>
+              <NameStyles>Name: {data.name}</NameStyles>
+                <DataStyles>
+                <p>Species: {data.species}</p>
+                <p>Status: {data.status}</p>
+                </DataStyles>
+              </div>
         )
       })}
     </section>
+    </CharStyles>
   );
 }
