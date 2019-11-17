@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+> Answer: The benefit's are that it's nice to use client-side routing because you download less data and you can reuse the DOM elements. It can process state changes and render new components. Overall there are some upsides that make developers prefer to use client-side routing. 
 
 ## Project Set Up
 

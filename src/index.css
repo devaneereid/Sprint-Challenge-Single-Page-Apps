@@ -37,3 +37,14 @@ main {
 header h1 {
   text-align: center;
 }
+#root > main > section {
+  padding: 20px;
+  margin: 0 20px;
+}
+button {
+  padding: 10px;
+  background:navy;
+  border-radius: 10px;
+  color: white;
+  margin-left: 20px;
+}
